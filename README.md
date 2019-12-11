@@ -1,8 +1,66 @@
-# Brief projet Give Me Some Credit (classification Kaggle)
 
-Participez au Challenge Kaggle [Give Me Some Credit](http://kaggle.com/c/GiveMeSomeCredit/data). Les activités proposées ci-dessous vous nous aider à obtenir les meilleurs résultats possibles. Pour chaque activité / tâche, expliquez où se trouve ce que vous avez fait, et mettez un lien.
+## Organisation du projet
+Inspection du train set : [Descriptive statistics](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/ml_mastery_5_understand_your_data_with_descriptive_statistics.ipynb)
+[Visualization](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/ml_mastery_6_understand_your_data_with_visualization.ipynb)
+Nettoyage et préparation des données :  [New features give me credit](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/new_features_give_me_credit.ipynb)
+Création des modèles et évaluation rapide sur BigMl : [Training BigML give me some credit](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/training_bigml_give_me_credit.ipynb)
+Evaluation du modèle, importance des features, ROC curve : [Evaluation du modèle](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/evaluation_bigml_give_me_credit2.ipynb)
+Prediction in the test set kaggle and submition : [Kaggle submition]()
 
-TODO Formateur: compétences visées, grille d'évaluation...
+Pour mes comparaison je me suis aidé du code de Guillaume pour simplifier. Je ne suis donc pas sûre que tu puisse Faire tourner correctement évaluation et visualisation
+comparision Ensemble and deepnet : [ensemble deepnet comparision](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/ensemble_deepnet_comparison.ipynb)
+[ensemble deepnet comparision evaluation](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/ensemble_deepnet_comparison_evaluation.ipynb)
+[ensemble deepnet comparision visualisation](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/ensemble_deepnet_comparison_visualisation.ipynb)
+
+Test xgboost  XGBClassifier : [Xgboost](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/gmsc_sklearn.ipynb)
+Exercice du 7 novembre sur une prédiction : [One prediction](https://github.com/Simplon-IA-Bdx-1/give-me-some-credit-Malaika-p/blob/master/exo_07_11_2019.ipynb)
+
+## Nombre de features. Nombre de lignes
+Train : 11 features - 150000 lignes
+Test : 11 features - 101503 lignes
+
+## Préparation des données de train, val et test
+split the training
+Correcting the values in monthly income Set NaN to 0 in the monthly income column
+Creating a new column for monthly debt. We calculate the monthly debt. If the income is zero, we take the monthly debt from the debt ratio.
+Correcting the values in number of dependents
+Create new colomn BalancedIncomePerDependent
+Create new colomn  BalancedIncome  MontlyIncome/ (NumberOfDependents +1)
+Weighted sum of late payments
+Replace the outlier of DebtRatio by 0.3
+
+I tried 6 differents configurations for the features and i keep the best.
+
+
+
+## Score kaggle
+BigMl : 
+Score privée : 0.86454
+Score public : 0.85878
+Xgboost :
+Score privée 0,86633
+Score public 0,85935
+
+## observations sur les 100 plus grosses erreurs 
+
+   * 100% n'ont aucuns jours de retard 
+   * 75% on plus de 6 NumberOfOpenCreditLinesAndLoans
+   * environ 80% ont plus de 40 ans
+   * environ 60% ont plus de 50 ans 
+
+   * 20% avait 0 en MontlyIncome et ont été corrigé à 0.3 en DebtRatio
+      * Avec eux 50% sont audessus de 0.3 en DebtRatio
+
+
+
+Trouver seuil qui optimise le gain total :
+0.29533333333333334
+Le gain maximum est 10135500
+
+Tu dois créer les dossiers suivants : 
+
+./predictions/'
+./prep_datasets/'
 
 ## Démarrer l'environnement de développement Jupyter
 
